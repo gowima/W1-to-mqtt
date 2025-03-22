@@ -1,0 +1,86 @@
+{
+  "topic_prefix": "heizung/temperaturen/",
+  "period": 60,
+  "ha_discovery_topic": "homeassistant/sensor/heizung/",
+  "ha_discovery_rep": 120,
+  "mqtt": {
+    "broker": "192.168.11.230",
+    "port": 1883,
+    "qos": 1,
+    "topic": "heizung/"
+  },
+  "template": {
+    "device": {
+      "name": "Heizung",
+      "identifiers": [
+        "Heizung"
+      ],
+      "model": "DS18B20",
+      "sw_version": "W1"
+    },
+    "origin": {
+      "name": "w1-run.py"
+    },
+    "unit_of_measurement": "°C",
+    "state_class": "measurement",
+    "device_class": "temperature",
+    "value_template": "{{value_json.temperature}}"
+  },
+  "devices": {
+    "28-3ce1e38118b2": {
+      "name": "A_B01-C1__Vorl-WW",
+      "state_topic": "state/sensor_a"
+    },
+    "28-3ce1e381aac4": {
+      "name": "B_B01-C2__Vorl-Solar-Brenner",
+      "state_topic": "state/sensor_b"
+    },
+    "28-3ce1e381da6f": {
+      "name": "C_B01-C3__Vorl-Hzng",
+      "state_topic": "state/sensor_c"
+    },
+    "28-3ce1e38133d3": {
+      "name": "E_B01-C5__Rueckl-Brenner",
+      "state_topic": "state/sensor_e"
+    },
+    "28-3ce1e381ad01": {
+      "name": "F_B02-C1__Speicher2-Speicher1",
+      "state_topic": "state/sensor_f"
+    },
+    "28-3ce1e381e21e": {
+      "name": "G_B02-C2__Rueckl-WWHzng-o",
+      "state_topic": "state/sensor_g"
+    },
+    "28-3ce1e381a7f9": {
+      "name": "H_B02-C2__Rueckl-Solar",
+      "state_topic": "state/sensor_h"
+    },
+    "28-3ce1e3813fd3": {
+      "name": "K_B02-C7__Rueckl-WWHzng-u",
+      "state_topic": "state/sensor_k"
+    }
+  },
+  "logging": {
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+      "default": {
+        "style": "{",
+        "format": "{asctime} {levelname}: {name}: {message}",
+        "datefmt": "%Y-%m-%d %H:%M:%S"
+      }
+    },
+    "handlers": {
+      "stdout": {
+        "level": "DEBUG",
+        "class": "logging.StreamHandler",
+        "stream": "ext://sys.stdout",
+        "formatter": "default"
+      }
+    },
+    "root": {
+      "level": "INFO",
+      "handlers": ["stdout"]
+    }
+  }
+}

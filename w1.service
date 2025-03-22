@@ -1,0 +1,23 @@
+# copy this file to /lib/systemd/system/w1.service
+#
+# > systemctl daemon-reload 
+# > systemctl --now enable w1.service
+#
+[Unit]
+Description=Read devices on 1-wire bus.
+After=multi-user.target
+ 
+[Service]
+Type=simple
+Restart=always
+User=pi
+
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/python /home/pi/gpio/w1_run.py
+WorkingDirectory=/home/pi/gpio/
+
+StandardOutput=append:/var/log/w1.log
+StandardError=append:/var/log/w1.log
+
+[Install]
+WantedBy=multi-user.target
